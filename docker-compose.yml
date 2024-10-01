@@ -6,7 +6,7 @@ services:
     build:
       context: ./frontend
       dockerfile: ./Dockerfile
-      target: build
+      target: final
     depends_on:
       - 'backend'
     environment:

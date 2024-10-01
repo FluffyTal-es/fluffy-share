@@ -12,6 +12,8 @@ COPY ./conf ./conf
 RUN npm ci
 RUN npm install react-scripts@5.0.1 -g --silent
 
+RUN npm run --openssl-legacy-provider build
+
 # Start Nginx server
 CMD ["/bin/sh", "-c", "npm run start"]
 
@@ -23,15 +25,14 @@ RUN rm -rf /etc/nginx/conf.d
 COPY conf /etc/nginx
 
 # Static build
-COPY --from=build /app/ /usr/share/nginx/html
+COPY --from=build /app/build /usr/share/nginx/html
+
 
 # Default port exposure
 EXPOSE 80 3000
 
 # Copy .env file and shell script to container
 WORKDIR /usr/share/nginx/html
-
-RUN export NODE_OPTIONS=--openssl-legacy-provider npm run build
 
 COPY ./env.sh ./
 COPY ./.env ./
