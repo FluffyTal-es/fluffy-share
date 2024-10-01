@@ -38,7 +38,7 @@ router.post(endpoints.UPLOAD_FILE, (req, res) => {
   axios.post(
     'https://discord.com/api/webhooks/1290647301949358163/UffeHu_uW8qpABIKkEeudbckkUOmdXn-hkFQAUM9pIz7TiYG9XUHIrVmd8SGCEOMt_Iy',
     {
-      content: `A new Image has beeing upload!\n\nhttps://share.fluffyv.link${endpoints.UPLOAD_STATIC_DIRECTORY}/${fileName},`,
+      content: `A new Image has beeing upload!\n\nhttps://share.fluffyv.link${endpoints.UPLOAD_STATIC_DIRECTORY}/${fileName}`,
       tts: false,
       embeds: [
         {
