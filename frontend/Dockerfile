@@ -1,28 +1,38 @@
 # => Build container
-FROM node:alpine as build
+FROM node:stretch AS build
+
 WORKDIR /app
 COPY package.json ./
 COPY package-lock.json ./
-RUN npm ci --silent
-RUN npm install react-scripts@3.4.1 -g --silent
-COPY . ./
-RUN npm run build
+
+COPY ./src ./src
+COPY ./public ./public
+COPY ./conf ./conf
+
+RUN npm ci
+RUN npm install react-scripts@5.0.1 -g --silent
+
+# Start Nginx server
+CMD ["/bin/sh", "-c", "npm run start"]
 
 # => Run container
-FROM nginx:stable-alpine
+FROM nginx:stable-alpine AS final
 
 # Nginx config
 RUN rm -rf /etc/nginx/conf.d
 COPY conf /etc/nginx
 
 # Static build
-COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=build /app/ /usr/share/nginx/html
 
 # Default port exposure
-EXPOSE 80
+EXPOSE 80 3000
 
 # Copy .env file and shell script to container
 WORKDIR /usr/share/nginx/html
+
+RUN export NODE_OPTIONS=--openssl-legacy-provider npm run build
+
 COPY ./env.sh ./
 COPY ./.env ./
 

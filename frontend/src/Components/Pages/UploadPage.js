@@ -34,27 +34,27 @@ function UploadPage() {
       history.push(value.data.filePath)
       Swal.fire({
         icon: 'success',
-        title: "Your image was uploaded!",
+        title: "Dein Bild wurde hochgeladen!",
         showConfirmButton: false,
         timer: 1500
       })
     }, 1400)    
   }
 
-    const handlePaste = (event) => {
-        const fileUploaded = event.clipboardData.files[0]
-        sendRequest(fileUploaded, handleLoading, handleResponse)
-    }
+  const handlePaste = (event) => {
+      const fileUploaded = event.clipboardData.files[0]
+      sendRequest(fileUploaded, handleLoading, handleResponse)
+  }
 
-    return (
-        <div className="allContainer" onPaste={handlePaste}>
-            <Navbar />
-            <ImageUploadCard handleLoading={handleLoading} handleResponse={handleResponse} loading={loading}/>
-            <div className="footerContainer">
-                <Footer />
-            </div>
-        </div>
-    )
+  return (
+      <div className="allContainer" onPaste={handlePaste}>
+          <Navbar />
+          <ImageUploadCard handleLoading={handleLoading} handleResponse={handleResponse} loading={loading}/>
+          <div className="footerContainer">
+              <Footer />
+          </div>
+      </div>
+  )
 }
 
 export default UploadPage
