@@ -11,7 +11,7 @@ export default class UploadedImage extends Component {
   }
 
   render() {
-    const image_url = window._env_.API_URL + '/upload/' + this.props.image_url
+    const image_url = process.env.API_URL + '/upload/' + this.props.image_url
 
     return (
       <Fragment>
@@ -32,11 +32,13 @@ export default class UploadedImage extends Component {
         <div
           id='myModal'
           className='modal'
-          style={{ display: this.state.showModal ? 'block' : 'none' }} >
+          style={{ display: this.state.showModal ? 'block' : 'none' }}
+        >
           <div>
             <span
               className='close'
-              onClick={() => this.setState({ showModal: false })} >
+              onClick={() => this.setState({ showModal: false })}
+            >
               &times;
             </span>
             <img

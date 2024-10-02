@@ -1,5 +1,5 @@
 # => Build container
-FROM node:stretch AS build
+FROM node:alpine AS build
 
 WORKDIR /app
 COPY package.json ./
@@ -10,12 +10,10 @@ COPY ./public ./public
 COPY ./conf ./conf
 
 RUN npm ci
-RUN npm install react-scripts@5.0.1 -g --silent
-
 RUN npm run --openssl-legacy-provider build
 
 # Start Nginx server
-CMD ["/bin/sh", "-c", "npm run start"]
+CMD ["/bin/sh", "-c", "CHOKIDAR_USEPOLLING=true node_modules/.bin/react-scripts --openssl-legacy-provider start"]
 
 # => Run container
 FROM nginx:stable-alpine AS final

@@ -15,13 +15,13 @@
     "react-dropzone": "^11.3.1",
     "react-lottie": "^1.2.3",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^5.0.1",
     "sass": "^1.32.8",
     "sweetalert2": "^11.14.1",
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "dev": "chmod +x ./env.sh && ./env.sh && cp env-config.js ./public/ && WATCHPACK_POLLING=true react-scripts --openssl-legacy-provider start",
+    "dev": "WATCHPACK_POLLING=true CHOKIDAR_USEPOLLING=true react-scripts --openssl-legacy-provider start",
     "start": "WATCHPACK_POLLING=true CHOKIDAR_USEPOLLING=true react-scripts --openssl-legacy-provider start",
     "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts --openssl-legacy-provider test",

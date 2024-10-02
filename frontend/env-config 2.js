@@ -1,4 +1,7 @@
 window._env_ = {
-  API_URL: "http://localhost:5000",
-  CLIENT_URL: "http://localhost",
+  API_URL: "https://share-api.fluffyv.link",
+  CLIENT_URL: "https://share.fluffyv.link",
 }
+
+
+

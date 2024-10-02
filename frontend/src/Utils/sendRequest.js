@@ -5,7 +5,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js'
 
 export async function sendRequest(file, handleLoading, handleResponse) {
   console.log(file, handleLoading, handleResponse)
-  
+
   if (file === undefined || !file.name.match(/.(jpg|jpeg|png|gif|webp)$/i)) {
     Swal.fire({
       icon: 'error',
@@ -23,7 +23,7 @@ export async function sendRequest(file, handleLoading, handleResponse) {
   handleLoading()
 
   try {
-    const res = await axios.post(window._env_.API_URL + '/upload', formData, {
+    const res = await axios.post(process.env.API_URL + '/upload', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
