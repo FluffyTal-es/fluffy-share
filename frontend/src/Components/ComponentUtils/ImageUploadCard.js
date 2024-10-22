@@ -52,9 +52,9 @@ export default function ImageUploadCard(props) {
           <Grow in={checked}>
             <Card className={classes.root}>
               <CardContent>
-                <p className={classes.headerText}>Lade dein Bild hoch</p>
+                <p className={classes.headerText}>Lade deine Datei hoch</p>
                 <p className={classes.subheaderText}>
-                  Nur Bilddateien sind erlaubt!
+                  Nur Bilder, Videos oder Pdf's sind erlaubt!
                 </p>
                 <StyledDropzone
                   handleLoading={props.handleLoading}

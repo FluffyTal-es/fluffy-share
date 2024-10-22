@@ -51,7 +51,8 @@ const divStyle = {
 export default function StyledDropzone(props) {
   const { getRootProps, isDragActive, isDragAccept, isDragReject } =
     useDropzone({
-      accept: 'image/jpeg, image/png, image/gif, image/webp, image/jpg',
+      accept:
+        'image/jpeg, image/png, image/gif, image/webp, image/jpg, application/pdf',
       onDrop: (file) => {
         sendRequest(file[0], props.handleLoading, props.handleResponse)
       }
@@ -81,7 +82,7 @@ export default function StyledDropzone(props) {
   return (
     <div className='container'>
       <div {...getRootProps({ style })}>
-        <p style={textStyle}>Ziehe dein Bild hier rein</p>
+        <p style={textStyle}>Ziehe deine Datei hier rein</p>
         <div style={divStyle} onClick={onDivClick}>
           <input
             type='file'

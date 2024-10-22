@@ -34,7 +34,7 @@ function UploadPage() {
       history.push(value.data.filePath)
       Swal.fire({
         icon: 'success',
-        title: "Dein Bild wurde hochgeladen!",
+        title: "Deine Datei wurde hochgeladen!",
         showConfirmButton: false,
         timer: 1500
       })

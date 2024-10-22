@@ -5,6 +5,8 @@ WORKDIR /app
 COPY package.json ./
 COPY package-lock.json ./
 
+COPY ./config ./config
+COPY ./scripts ./scripts
 COPY ./src ./src
 COPY ./public ./public
 COPY ./conf ./conf
@@ -13,7 +15,7 @@ RUN npm ci
 RUN npm run --openssl-legacy-provider build
 
 # Start Nginx server
-CMD ["/bin/sh", "-c", "CHOKIDAR_USEPOLLING=true node_modules/.bin/react-scripts --openssl-legacy-provider start"]
+CMD ["/bin/sh", "-c", "npm run start", "--host 0.0.0.0 --port 3000 --disableHostCheck true" ]
 
 # => Run container
 FROM nginx:stable-alpine AS final
